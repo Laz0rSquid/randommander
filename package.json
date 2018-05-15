@@ -1,0 +1,14 @@
+{
+  "name": "randommander",
+  "version": "1.0.0",
+  "description": "App for random commander selection for M:tG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mtgsdk": "^0.3.0"
+  }
+}
