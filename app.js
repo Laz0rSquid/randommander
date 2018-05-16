@@ -1,10 +1,18 @@
+const express = require('express');
+const app = express();
 const http = require('http');
 const fs = require('fs');
 const mtg = require('mtgsdk');
 const port = 3000;
 
-const server = http.createServer(function (req, resp) {
-    //3.
+const server = http.createServer(app);
+
+function getRandommander() {
+    mtg.card.where({ supertypes: 'legendary', types:'creature'}).then(cards => {console.log(cards[Math.floor(Math.random() * cards.length)].name);});
+};
+
+app.use(express.bodyParser());
+app.post( '/', function (req, resp) {
     fs.readFile("index.html", function (error, pgResp) {
         if (error) {
             resp.writeHead(404);
@@ -15,6 +23,9 @@ const server = http.createServer(function (req, resp) {
         }
         resp.end();
     });
+});
+app.get( '/', function (req, resp) {
+    getRandommander();
 });
 
 server.listen(port, (err) => {
